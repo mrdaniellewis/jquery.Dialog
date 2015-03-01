@@ -5,7 +5,8 @@
 	position: fixed;
 	top: 0;
 	right: 0;
-	bottom: 0;
+	/* On an iPhone, this helps stops the mask uncovering the page when the bottom toolbar is remove during scrolling */
+	bottom: -200px;
 	left: 0;
 	/* IE8 - needs to be an image as a "filter" does stop pointer clicks */
 	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNiOAMAANUAz5n+TlUAAAAASUVORK5CYII=);
