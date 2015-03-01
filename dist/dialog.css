@@ -37,13 +37,10 @@
 	border: 1px solid black;
 	/* We will limit ourselves to the new syntax and the IE tweener syntax */
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	-webkit-flex-direction: column;
-	-ms-flex-direction: column;
 	flex-direction: column;
 	-webkit-justify-content: space-between;
-	-ms-flex-pack: justify;
 	justify-content: space-between;
 }
 
@@ -71,7 +68,6 @@
 	background: #ddd;
 	position: relative;
 	-webkit-flex-shrink: 0;
-	-ms-flex-negative: 0;
 	flex-shrink: 0;
 }
 
@@ -125,7 +121,6 @@
 	/* This helps make it clearer there the main content can scroll */
 	box-shadow: inset 0 10px 10px -13px, inset 0 -10px 10px -13px;
 	-webkit-flex-grow: 2;
-	-ms-flex-positive: 2;
 	flex-grow: 2;
 	/* Better scrolling on iOS */
 	-webkit-overflow-scrolling: touch;
@@ -136,7 +131,6 @@
 	padding: .5em 1em;
 	background: #ddd;
 	-webkit-flex-shrink: 0;
-	-ms-flex-negative: 0;
 	flex-shrink: 0;
 }
 

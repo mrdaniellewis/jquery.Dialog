@@ -36,6 +36,7 @@
 	var supportsFixed = true;
 	var supportsFlexBox = true;
 	var supportsTransform = false;
+	var supportsResizingScrollableChildren = true;
 
 	// Not entirely efficent micro templater
 	// Replaces '{name}' with the value from data
@@ -56,10 +57,16 @@
 			.hide()
 			.appendTo('body');
 
-		var $test = $('<p class="' + namespace + '"/>').appendTo('body');
+		var $test = $('<div class="' + namespace + '" style="max-height:0;height:auto;"><p class="' + namespace + '__main" style="height:100px;color:red"></p></div>').appendTo('body');
 		supportsFixed = $test.css('position') === 'fixed';
 		supportsFlexBox = $test.css('display').indexOf('flex') > -1;
 		supportsTransform = $test.offset().left < $window.width()/2;
+
+		// In IE, if the container contains a child with "overflow-y: auto",
+		// it will not shrink that child and it overflows out
+		// This is partly fixed in IE11, where this only happens if the the container
+		// has no explict height
+		supportsResizingScrollableChildren = $test.find( '.' + namespace + '__main' ).height() === 0;
 		$test.remove();
 		isSetup = true;
 	}
@@ -337,32 +344,19 @@
 		_position: function() {
 
 			var $dialog = this.$dialog;
-			var $content = this.$content;
-			var height;
 
-			$dialog.css( 'height', '' );
-
-			height = $dialog.height();
-
-			if ( !supportsFlexBox ) {
-				$content.css('height', '' );	
-			}
-
-			if ( !supportsFlexBox ) {
-				// Mostly just IE <= 9
+			if ( !supportsFlexBox || !supportsResizingScrollableChildren ) {
+				// All of IE
+				var $content = this.$content;
+				$dialog.css( 'height', '' );
+				$content.css( 'height', '' );
+				var height = $dialog.height();
+				
 				var headerHeight = $dialog.find( '.' + namespace + '__header' ).outerHeight() || 0;
-				var footerHeight = $dialog.find( '.' + namespace + '__footer' ).outerHeight() || 0;
+				var footerHeight = this.$footer.outerHeight() || 0;
 				$content.height( height - headerHeight - footerHeight );
 			}
-
 			
-			// IE has a bug where it doesn't shrink the height of children
-			// that can be shrunk when using max-height.
-			// Setting an explict height fixes this
-			// As this is difficult to detect, we'll do it for all browsers
-			$dialog.css( 'height', height );
-			
-
 			if ( !supportsTransform && supportsFixed ) {
 				// IE < 9
 				$dialog.css( {
