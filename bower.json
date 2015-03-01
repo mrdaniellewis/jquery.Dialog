@@ -1,0 +1,22 @@
+{
+  "name": "jquery.dialog",
+  "version": "1.0.0",
+  "homepage": "https://github.com/mrdaniellewis/jquery.Dialog",
+  "authors": [
+    "Daniel Lewis <github@mrdaniellewis.co.uk>"
+  ],
+  "description": "An accessible modal dialog using jQuery",
+  "main": "dist/jquery.dialog.min.js",
+  "keywords": [
+    "dialog",
+    "modal",
+    "jquery"
+  ],
+  "license": "ISC",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src"
+  ]
+}
