@@ -59,6 +59,7 @@
 .dialog--alert {
 	/* Example only: a dialog that will resize vertically */
 	height: auto;
+	max-width: 20em;
 }
 
 .dialog__header {
