@@ -57,7 +57,7 @@
 			.hide()
 			.appendTo('body');
 
-		var $test = $('<div class="' + namespace + '" style="max-height:0;height:auto;"><p class="' + namespace + '__main" style="height:100px;color:red"></p></div>').appendTo('body');
+		var $test = $('<div class="' + namespace + '" style="max-height:0;height:auto;"><p class="' + namespace + '__main" style="height:100px;color:red;padding:0;border:0;"></p></div>').appendTo('body');
 		supportsFixed = $test.css('position') === 'fixed';
 		supportsFlexBox = $test.css('display').indexOf('flex') > -1;
 		supportsTransform = $test.offset().left < $window.width()/2;
@@ -187,7 +187,9 @@
 		}
 		if ( !stack.length ) {
 			$mask.hide();
-			removeGlobalEvents();
+			removeGlobalEvents();	
+		} else {
+			zIndex();
 		}
 	}
 
@@ -195,15 +197,20 @@
 	function zIndex() {
 
 		var index = 0;
-		stack.forEach( function(item) {
+		var topIndex = stack.length - 1;
+		stack.forEach( function(item,i) {
 			var $dialog = item.$dialog;
 			if ( !index ) {
 				// Reset the z index
 				$dialog.css( 'z-index', '' );
 				// Get the default
-				index = $dialog.css( 'z-index' ) || 1;
+				index = parseInt( $dialog.css( 'z-index' ), 10 ) || 1;
 			}
 			// Add the index
+			if ( i === topIndex ) {
+				$mask.css( 'z-index', ++index );
+			}
+
 			$dialog.css( 'z-index', ++index );
 		} );
 	}
