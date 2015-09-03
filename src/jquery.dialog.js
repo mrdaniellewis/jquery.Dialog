@@ -3,7 +3,7 @@
 /**
  *	jQuery plugin to create a dialog
  *
- *	This supports modal and none modal dialogs
+ *	This supports modal and non-modal dialogs
  *	Dialogs are stacked in creation order or modal order
  *	
  *	Dialogs are not moveable or resizable	
@@ -19,7 +19,7 @@
 
 	var $window = $(window);
 
-	// Change this to change the CSS and event namespace
+	// Sets the CSS namespace and the event namespace
 	var namespace = 'dialog';
 
 	// Ordering stack for modal dialogs
@@ -38,7 +38,7 @@
 	var supportsTransform = false;
 	var supportsResizingScrollableChildren = true;
 
-	// Not entirely efficent micro templater
+	// Micro templater
 	// Replaces '{name}' with the value from data
 	function templater( str, data ){	
 		return str.replace( /\{([^}]+)\}/g, function( m, name ) {
@@ -46,7 +46,7 @@
 		} );
 	}
 
-	// Inital setup.  Create the mask and run any feature tests
+	// Initial setup.  Create the modal dialog mask and run any feature tests
 	function setup() {
 
 		if ( isSetup ) {
@@ -61,15 +61,17 @@
 		supportsFixed = $test.css('position') === 'fixed';
 		supportsFlexBox = $test.css('display').indexOf('flex') > -1;
 
-		// If transform fails to work the dialog should be just right of the center
+		// The dialog is centred using transform. This tests this this works. 
+		// If it succeeds the test element will be right of the centre
+		// If it fails the test element left edge will be left of the centre
 		// Use + 1 to avoid rounding errors
-		// If it works it should be centered and the edge will be left of the center
 		supportsTransform = $test.offset().left + 1 < $window.width()/2;
 
-		// In IE, if the container contains a child with "overflow-y: auto",
-		// it will not shrink that child and it overflows out
+		// In IE, if a flex container contains a child with "overflow-y: auto",
+		// the child content overflows the container
 		// This is partly fixed in IE11, where this only happens if the the container
 		// has no explict height
+		// This tests for this
 		supportsResizingScrollableChildren = $test.find( '.' + namespace + '__main' ).height() === 0;
 		$test.remove();
 		isSetup = true;
@@ -95,8 +97,7 @@
 	}
 
 	/**
-	 *	Check if the top dialog contains the focus and if it does't
-	 *	force it to.
+	 *	Check if the top dialog contains the focus and if it doesn't force it to.
 	 */
 	function checkFocus(e) {
 
@@ -115,7 +116,7 @@
 	}
 
 	// Find all focusable elements in $el
-	// Including imagemaps is left as an exercise for the reader
+	// (Image-maps are complicated and ignored)
 	function getFocusable($el) {
 
 		return $el
@@ -165,7 +166,7 @@
 		hasGlobalEvents = false;
 	}
 
-	// Does global stuff for showing a dialog
+	// Update the stack and show the mask for a modal dialog
 	function showModal(dialog) {
 
 		// Remove the dialog from the stack if present
@@ -182,7 +183,7 @@
 
 	}
 
-	// Hide a modeal dialog
+	// Hide a modal dialog
 	function hideModal(dialog) {
 		
 		var index = stack.indexOf(dialog);
@@ -338,7 +339,7 @@
 				.append(options.content);
 			this.$footer = $dialog.find( '.' + namespace + '__footer' )
 				.append(options.footer);
-			this.$footer = $dialog.find( '.' + namespace + '__title' );
+			this.$title = $dialog.find( '.' + namespace + '__title' );
 
 			this.$dialog = $dialog;
 
@@ -378,7 +379,9 @@
 		},
 
 		/**
-		 *	Set the focus.  If inTabbingOrder it will be set to first focusable element
+		 *	Set the focus.  
+		 * 
+		 *	If inTabbingOrder is true it will be set to first focusable element
 		 *
 		 *	Otherwise it is set to:
 		 *  * the first focusable element in .dialog__main or below with an autofocus attribute
@@ -413,8 +416,7 @@
 		},
 
 		/**
-		 *	Loop the focus round them tabbing
-		 *
+		 *	Loop the focus round while tabbing
 		 */
 		_keydown: function(e) {
 			if ( e.which !== 9 ) {
