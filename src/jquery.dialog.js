@@ -326,7 +326,8 @@
 				className: className,
 				ns: namespace,
 				count: this._id,
-				role: options.role || 'dialog'
+				role: options.role || 'dialog',
+				close: options.closeLabel || 'Close'
 			} );
 
 			var $dialog = $(html)

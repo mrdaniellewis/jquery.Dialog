@@ -40,7 +40,10 @@ var dialog = new $.Dialog( {
 
 	// Set the aria-role attribute. Defaults to 'dialog'
 	// See http://www.w3.org/TR/wai-aria/roles#widget_roles_header
-	role: 'alertdialog' /
+	role: 'alertdialog',
+
+	// Set the label on the close button.  Defaults to "Close".
+	closeLabel: 'Close'
 } );
 
 // Show the dialog
