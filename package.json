@@ -1,6 +1,6 @@
 {
   "name": "jQuery.Dialog",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "A jQuery dialog plugin",
   "main": "build.js",
   "author": "Daniel Lewis",
