@@ -2,12 +2,15 @@
   "name": "jQuery.Dialog",
   "version": "1.0.0",
   "description": "A jQuery dialog plugin",
-  "private": true,
   "main": "build.js",
   "author": "Daniel Lewis",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrdaniellewis/jquery.dialog.git"
+  },
   "devDependencies": {
-    "gulp": "3.8.11",
+    "gulp": "3.9.0",
     "gulp-tributary": "^1.1.1",
     "gulp-js-escape": "^1.0.0",
     "gulp-uglify": "^1.1.0",
