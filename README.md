@@ -2,17 +2,17 @@
 
 A jQuery plugin that creates an accessible modal dialog that is vertically and horizontally centred on the screen.
 
-Based on best practice neatly summarised here:
+Based on best practice summarised here:
 
 * http://www.nczonline.net/blog/2013/02/12/making-an-accessible-dialog-box/
 
 ## Support
 
-This is intended to work in IE8+ and all other browsers.  It can work in IE6 and 7, but the CSS will need more work.
+Work in IE8+ and all other browsers.  It can work in IE6 and 7, but the CSS will need more work.
 
-For browsers that don't support fixed positioning, dialogs will absolutely positioned at the top of the page.
+If a browser doesn't support fixed positioning then the dialog will absolutely positioned at the top of the page.
 
-The dialog uses HTML5 elements, `Function.prototype.bind`, `Array.prototype.forEach` and `Array.prototype.indexOf`.  For [older browers](http://kangax.github.io/compat-table/es5/) you will need to add https://github.com/es-shims/es5-shim and https://github.com/aFarkas/html5shiv to your project.
+The script uses HTML5 elements, `Function.prototype.bind`, `Array.prototype.forEach` and `Array.prototype.indexOf`.  For [older browers](http://kangax.github.io/compat-table/es5/) you will need to add https://github.com/es-shims/es5-shim and https://github.com/aFarkas/html5shiv to your project.
 
 ## Usage
 
@@ -23,14 +23,22 @@ The API of this object roughly follows the API of the [HTML5 `<dialog>` element]
 
 // You can omit new if you prefer
 var dialog = new $.Dialog( {
+	
 	title: 'Dialog title',
-	content: '<p>Content</p>', // A jQuery collection will also work
+
+	// String or jQuery collection
+	content: '<p>Content</p>',
+	
+	// String or jQuery collection
 	footer: '<p>My footer content</p>',
-	// Optional, any additional classes
-	className: 'dialog--whatever', 
-	// Optional, if true closing the dialog also calls destroy
+
+	// Optional additional classes
+	className: 'dialog--whatever',
+
+	// If true closing the dialog also calls destroy.  Defaults to false
 	destroyOnClose: true, 
-	// Optional, the aria-roleby default this is set to 'dialog'
+
+	// Set the aria-role attribute. Defaults to 'dialog'
 	// See http://www.w3.org/TR/wai-aria/roles#widget_roles_header
 	role: 'alertdialog' /
 } );
@@ -51,7 +59,7 @@ dialog.destory();
 // A shortcut for dialog.$dialog.on(), chainable
 dialog.on( type, selector, fn );
 
-// References to jQuery objects containing 
+// References to parts of the dialog as jQuery collections 
 dialog.$dialog // the dialog
 dialog.$title // The title
 dialog.$content // The main content
