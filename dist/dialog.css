@@ -31,7 +31,7 @@
 
 	/* Max height prevents the dialog being taller than the screen */
 	max-height: 80%;
-	/* Don't use height if you want to resize according to the content */
+	/* Don't use height if you want the dialog to resize to fit the content content */
 	height: 20em;
 
 	background: white;
@@ -85,7 +85,6 @@
 }
 
 /* Adjust the close button as appropriate for the project */
-
 .dialog__close {
 	color: #666;
 	border: none;
@@ -100,7 +99,7 @@
 	padding: 0;
 	line-height: 1;
 	width: 1em;
-	height: 1em;
+	height: 1.1em;
 	overflow: hidden;
 
 }
