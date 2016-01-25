@@ -15,6 +15,7 @@
 	<p><button type="button" id="button-show">Show</button>
 	<p><button type="button" id="button-show-modal">Show modal</button>
 	<p><button type="button" id="button-show-small">Show small</button>
+	<p><button type="button" id="button-show-form">Show form</button>
 
 	<!-- Some background content -->
 
@@ -63,6 +64,16 @@
 			} );
 			$('#button-show-small').on( 'click', function() {
 				dialogSmall.showModal();
+			} );
+			$('#button-show-form').on( 'click', function() {
+				
+				$.Dialog( {
+					title: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi',
+					content: '<p>Lorem ipsum <a href="#test">dolor</a><p>Lorem ipsum dolor sit amet.',
+					footer: '<button type="button">Button</button>',
+					nodeName: 'form'
+				} ).showModal();
+
 			} );
 
 		} );
