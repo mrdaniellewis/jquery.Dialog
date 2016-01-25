@@ -228,6 +228,7 @@
 	 *	@param {Boolean} [options.footer]
 	 *	@param {Boolean} [options.className]
 	 *	@param {Boolean} [options.destroyOnClose]
+	 *	@param {Boolean} [options.form] Wraps the dialog contents in a form
 	 */
 	function Dialog(options) {
 
@@ -327,7 +328,8 @@
 				ns: namespace,
 				count: this._id,
 				role: options.role || 'dialog',
-				close: options.closeLabel || 'Close'
+				close: options.closeLabel || 'Close',
+				nodeName: options.nodeName || 'div'
 			} );
 
 			var $dialog = $(html)

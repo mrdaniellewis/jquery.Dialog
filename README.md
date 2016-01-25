@@ -43,7 +43,10 @@ var dialog = new $.Dialog( {
 	role: 'alertdialog',
 
 	// Set the label on the close button.  Defaults to "Close".
-	closeLabel: 'Close'
+	closeLabel: 'Close',
+
+	// Set the nodeName for the dialog.  Defaults to "div".
+	nodeName: 'form'
 } );
 
 // Show the dialog
