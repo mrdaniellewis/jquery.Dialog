@@ -11,11 +11,12 @@
   },
   "devDependencies": {
     "gulp": "3.9.0",
-    "gulp-tributary": "^1.1.1",
+    "gulp-gh-pages": "^0.5.4",
     "gulp-js-escape": "^1.0.0",
-    "gulp-uglify": "^1.1.0",
+    "gulp-rename": "^1.2.0",
     "gulp-sourcemaps": "^1.5.0",
-    "gulp-rename": "^1.2.0"
+    "gulp-tributary": "^1.1.1",
+    "gulp-uglify": "^1.1.0"
   },
   "scripts": {
     "build": "gulp"

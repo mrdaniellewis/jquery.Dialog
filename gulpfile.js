@@ -12,7 +12,7 @@ var escape = require( 'gulp-js-escape' );
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 var rename = require('gulp-rename');
-
+var ghPages = require('gulp-gh-pages');
 
 var paths = {
 	template: 'src/dialog-template.htm',
@@ -26,10 +26,6 @@ gulp.task( 'build', function() {
 
 	gulp.src( paths.script )
 		.pipe( tributary( template ) )
-		.pipe(sourcemaps.init())
-			.pipe( uglify() )
-			.pipe( rename({extname: '.min.js'}) )
-		.pipe(sourcemaps.write( '.'))
 		.pipe( gulp.dest( 'dist' ) );
 } );
 
@@ -38,7 +34,12 @@ gulp.task('watch', function() {
 	gulp.watch( paths.script, ['build'] ); 
 });
 
-gulp.task( 'default', ['watch', 'build'] );
+gulp.task('deploy', function() {
+	return gulp.src('./dist/**/*')
+    	.pipe(ghPages());
+});
+
+gulp.task( 'default', ['build'] );
 
 
 
